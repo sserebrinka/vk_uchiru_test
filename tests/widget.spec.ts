@@ -26,12 +26,30 @@ test.describe('Uchi.ru widget ', () => {
     await expect(widgetPage.getPopularArticlesList()).toBeVisible();
 
     const articles = await widgetPage.getPopularArticles();
-
     await articles[0].click();
-
     await widgetPage.clickWriteToUs();
+
     await expect(widgetPage.getWriteToUs()).not.toBeVisible();
 
     expect(await widgetPage.getTitle()).toEqual('Связь с поддержкой');
   });
-});
+
+  test('feedback form contains all the fields and sending button', async ({ page }) => {
+    await widgetPage.openWidget();
+
+    await expect(widgetPage.getPopularArticlesList()).toBeVisible()
+    
+    const articles = await widgetPage.getPopularArticles();
+    await articles[0].click();
+    await widgetPage.clickWriteToUs();
+
+    await expect(widgetPage.getWriteToUs()).not.toBeVisible();
+
+    await expect(widgetPage.getNameInput()).toBeVisible();
+    await expect(widgetPage.getEmailInput()).toBeVisible();
+    await expect(widgetPage.getTypeSelect()).toBeVisible();
+    await expect(widgetPage.getThemeSelect()).toBeVisible();
+    await expect(widgetPage.getTextarea()).toBeVisible();
+    await expect(widgetPage.getSendButton()).toBeVisible();
+  });
+})

@@ -13,7 +13,14 @@ enum WidgetPageSelectors {
     ARTICLE_POPULAR_LIST = `${ARTICLE_POPULAR_TITLE} + ul[class^=articles__]`,
     ARTICLE_POPULAR_LIST_ITEM = `${ARTICLE_POPULAR_LIST} > li`,
 
-    BUTTON_COOKIE = '._UCHI_COOKIE__button'
+    BUTTON_COOKIE = '._UCHI_COOKIE__button',
+
+    INPUT_NAME = '[data-test="form_items_input_name"]',
+    INPUT_EMAIL = '[data-test="form_items_input_mail"]',
+    FORM_WITH_TYPES = '[data-test="form_items_select_1"]',
+    FORM_WITH_THEMES = '[data-test="form_items_select_2"]',
+    INPUT_TEXT = '[data-test="form_items_textarea"]',
+    BUTTON_SEND_MESSAGE = '[data-test="button_send_form"]'
 }
 
 export class WidgetPage {
@@ -60,6 +67,30 @@ export class WidgetPage {
         if (isVisible) {
             await cookieButton.click();
         }
+    }
+
+    getNameInput() {
+        return this.wrapper().locator(WidgetPage.selector.INPUT_NAME);
+    }
+
+    getEmailInput() {
+        return this.wrapper().locator(WidgetPage.selector.INPUT_EMAIL);
+    }
+
+    getTypeSelect() {
+        return this.wrapper().locator(WidgetPage.selector.FORM_WITH_TYPES);
+    }
+
+    getThemeSelect() {
+        return this.wrapper().locator(WidgetPage.selector.FORM_WITH_THEMES);
+    }
+
+    getTextarea() {
+        return this.wrapper().locator(WidgetPage.selector.INPUT_TEXT);
+    }
+
+    getSendButton() {
+        return this.wrapper().locator(WidgetPage.selector.BUTTON_SEND_MESSAGE);
     }
 }
 
